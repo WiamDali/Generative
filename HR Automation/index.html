@@ -1,1 +1,109 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>To the Power of AI!</title>
+    <!-- Styling for the client UI -->
+    <style>
+    h1 {
+        color: #FFFFFF;
+        font-family: system-ui;
+        margin-left: 20px;
+    }
+    body {
+        background-color: #222629;
+    }
+    label {
+        color: #86C232;
+        font-family: system-ui;
+        font-size: 20px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    button {
+        background-color: #86C232;
+        border-color: #86C232;
+        color: #FFFFFF;
+        font-family: system-ui;
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 30px;
+        margin-top: 20px;
+        width: 140px;
+    }
+    input {
+        color: #222629;
+        font-family: system-ui;
+        font-size: 15px;
+        margin-left: 10px;
+        margin-top: 25px;
+        width: 200px;
+    }
+    .response-box {
+        background-color: #555555;
+        color: #FFFFFF;
+        font-family: system-ui;
+        font-size: 18px;
+        padding: 10px;
+        margin-top: 20px;
+        margin-left: 20px;
+        width: 400px;
+        word-wrap: break-word;
+        white-space: pre-line;
+    }
+    textarea {
+        color: #222629;
+        font-family: system-ui;
+        font-size: 15px;
+        margin-left: 10px;
+        margin-top: 25px;
+        width: 200px;
+        height: 100px;
+        resize: vertical;
+    }
+    </style>
+    <script>
+        // callAPI function that takes the base and exponent numbers as parameters
+        var callAPI = (name, properties, experience) => {
+            // instantiate a headers object
+            var myHeaders = new Headers();
+            // add content type header to object
+            myHeaders.append("Content-Type", "application/json");
+            // using built-in JSON utility package, turn object to string and store in a variable
+            var raw = JSON.stringify({"name": name, "job_title": properties, "experience": experience});
+            // create a JSON object with parameters for API call and store in a variable
+            console.log('raw:', raw)
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            // make API call with parameters and use promises to get response
+            fetch("https://pt9lf9uefa.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // Display the API response in a box
+                var responseBox = document.getElementById('response-box');
+                responseBox.innerText = JSON.parse(result).body.replace(/\\n/g, '\n');
+            })
+            .catch(error => console.log('error', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>TO THE POWER OF AI!</h1>
+    <form>
+        <label>Name:</label>
+        <input type="text" id="name">
+        <label>Job Title:</label>
+        <input type="text" id="job_title">
+        <label>Experience:</label>
+        <textarea id="experience"></textarea>
+        <!-- set button onClick method to call function we defined passing input values as parameters -->
+        <button type="button" onclick="callAPI(document.getElementById('name').value, document.getElementById('job_title').value, document.getElementById('experience').value)">DESCRIBE</button>
+    </form>
+    <!-- Display the API response in a box -->
+    <div class="response-box" id="response-box"></div>
+</body>
+</html>
