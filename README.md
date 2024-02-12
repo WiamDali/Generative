@@ -3,7 +3,7 @@
 Ce dossier contient les travaux sur les modèles génératifs. Les champs d'application s'éttendent du traitement d'image, à l'automatisation d'un business process..
 
 
-- 📫 How to reach me: wiem.dali@icloud.com
+- 📫 How to reach me: wiam.dali@icloud.com
 
 
   Here are some examples of AI based application. You cand find the link above each screen shit and you can try it by yourself !
