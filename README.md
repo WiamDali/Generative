@@ -1,6 +1,6 @@
 ## Generative Models 🎭
 
-Ce dossier contient les travaux sur les modèles génératifs. Les champs d'application s'éttendent du traitement d'image, à l'automatisation d'un business process..
+Ce dossier contient les travaux sur les modèles génératifs. Les champs d'application s'éttendent du traitement du langage naturel, jusqu'au traitement d'image ..
 
 
 - 📫 How to reach me: wiam.dali@icloud.com
